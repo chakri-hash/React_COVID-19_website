@@ -1,0 +1,208 @@
+import React, { useEffect } from "react";
+
+function Disp() {
+  const [store, setStore] = React.useState("");
+  const [countryData, setCountryData] = React.useState([]);
+  //const [loading, setLoading] = React.useState(true);
+  //const [error, setError] = React.useState(true);
+
+  const getStore = async () => {
+    const d = await fetch("https://coronavirus-19-api.herokuapp.com/countries");
+    const data = await d.json();
+    let error = true;
+    data.map((item) => {
+      if (item.country === store) {
+        setCountryData(item);
+        error = false;
+      }
+    });
+    if (error) {
+      alert("NOT FOUND");
+    }
+
+    // setError(true);
+    // }
+    //console.log(y);
+    //setLoading(false);
+  };
+
+  //useEffect(() => {
+  //setLoading(true);
+  //}, [store]);
+
+  //if(loading)
+  //{
+  //return <p>loading...</p>
+  //}
+
+  return (
+    <div>
+      <div className="first">
+        <input
+          placeholder="Enter Country"
+          onChange={(e) => setStore(e.target.value)}
+        />
+        <div className="buttons">
+          <button style={{ textAlign: "center" }} onClick={getStore}>
+            click
+          </button>
+        </div>
+      </div>
+      <marquee width="100%" direction="right" height="30%">
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />{" "}
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+        <img
+          src="https://static01.nyt.com/newsgraphics/2020/03/10/coronavirus-pathogen/0ee8f1a44b1932072653a0a75ff96486feb6f36d/covid-virus.png"
+          alt=" "
+        />
+      </marquee>
+      <div className="rows">
+        <div className="row1">
+          <div className="cases">
+            <div>
+              <p>Cases</p>
+            </div>
+
+            <div>
+              <p>{countryData.cases}</p>
+            </div>
+          </div>
+          <div className="TodayCase">
+            <div>
+              <p>Today Cases</p>
+            </div>
+            <div>
+              <p>{countryData.todayCases}</p>
+            </div>
+          </div>
+
+          <div className="TPOM">
+            <div>
+              <p style={{ fontSize: "17px" }}>Tests Per One Mllion</p>
+            </div>
+            <div>
+              <p>{countryData.testsPerOneMillion}</p>
+            </div>
+          </div>
+        </div>
+        <div className="row2">
+          <div className="TodayDeath">
+            <div>
+              <p style={{ fontSize: "23px" }}>Today Deaths</p>
+            </div>
+            <div>
+              <p>{countryData.todayDeaths}</p>
+            </div>
+          </div>
+          <div className="Recovered">
+            <div>
+              <p>Recovered</p>
+            </div>
+            <div>
+              <p>{countryData.recovered}</p>
+            </div>
+          </div>
+
+          <div className="CPOM">
+            <div>
+              <p style={{ fontSize: "18px" }}>Cases Per One Million</p>
+            </div>
+            <div className="CPOMSUB">
+              <p>{countryData.casesPerOneMillion}</p>
+            </div>
+          </div>
+        </div>
+        <div className="row3">
+          <div className="Critical">
+            <div>
+              <p>Critical</p>
+            </div>
+            <div>
+              <p>{countryData.critical}</p>
+            </div>
+          </div>
+
+          <div className="Active">
+            <div>
+              <p>Active</p>
+            </div>
+            <div>
+              <p>{countryData.active}</p>
+            </div>
+          </div>
+
+          <div className="DPOM">
+            <div>
+              <p style={{ fontSize: "17px" }}>Deaths Per One Million</p>
+            </div>
+            <div>
+              <p>{countryData.deathsPerOneMillion}</p>
+            </div>
+          </div>
+        </div>
+        <div className="row4">
+          <div className="TotalTests">
+            <div>
+              <p>Total Tests</p>
+            </div>
+            <div>
+              <p>{countryData.totalTests}</p>
+            </div>
+          </div>
+
+          <div className="Deaths">
+            <div>
+              <p>Deaths</p>
+            </div>
+            <div>
+              <p>{countryData.deaths}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+export default Disp;

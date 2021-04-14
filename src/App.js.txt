@@ -1,0 +1,17 @@
+import React from "react";
+import Disp from "./Disp";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <div>
+      <div className="main">
+        <div>
+          <h1 style={{ fontFamily: "poppins" }}>COVID-19 DASHBOARD</h1>
+        </div>
+      </div>
+
+      <Disp />
+    </div>
+  );
+}
